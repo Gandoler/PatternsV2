@@ -10,6 +10,6 @@ class Stewardess : AirplaneUnit
     }
     public override void RemoveExcessBaggage(double excess)
     {
-        // Стюардесса не имеет багажа — ничего не делаем
+        // Стюардесса не имеет багажа — ничего не делаем  
     }
 }
