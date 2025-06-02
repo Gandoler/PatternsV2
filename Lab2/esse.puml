@@ -1,0 +1,40 @@
+@startuml
+
+interface Warrior {
+    +Clone(): Warrior
+    +Info(): void
+}
+
+class Infantryman {
+    +Clone(): Warrior
+    +Info(): void
+    -- internal constructor
+}
+
+class Archer {
+    +Clone(): Warrior
+    +Info(): void
+    -- internal constructor
+}
+
+class Horseman {
+    +Clone(): Warrior
+    +Info(): void
+    -- internal constructor
+}
+
+class PrototypeFactory {
+    +CreateInfantryman(): Warrior
+    +CreateArcher(): Warrior
+    +CreateHorseman(): Warrior
+}
+
+Warrior <|-- Infantryman
+Warrior <|-- Archer
+Warrior <|-- Horseman
+
+PrototypeFactory --> Infantryman : -prototype
+PrototypeFactory --> Archer : -prototype
+PrototypeFactory --> Horseman : -prototype
+
+@enduml
