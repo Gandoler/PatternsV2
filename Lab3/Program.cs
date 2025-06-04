@@ -4,7 +4,7 @@ class Program
 {
     static void Main()
     {
-        var airplane = new Airplane(maxTotalBaggage: 5000);
+        AirplaneUnit airplane = new Airplane(maxTotalBaggage: 5000);
 
         // Добавляем экипаж
         airplane.Add(new Pilot());

@@ -1,0 +1,50 @@
+@startuml
+
+package uLab4 {
+    class TextInterpreterClient {
+        - _expressions : List<IExpression>
+        + Interpret(input : string) : string
+    }
+
+    class Context {
+        + Text : string
+        + Context(text : string)
+    }
+}
+
+package "uLab4.Interpretators" {
+    interface IExpression {
+        + Interpret(context : Context) : void
+    }
+
+    class MultiSpaceExpression {
+        + Interpret(context : Context) : void
+    }
+
+    class DashExpression {
+        + Interpret(context : Context) : void
+    }
+
+    class QuotesExpression {
+        + Interpret(context : Context) : void
+    }
+
+    class PunctuationSpacingExpression {
+        + Interpret(context : Context) : void
+    }
+
+    class NewlineExpression {
+        + Interpret(context : Context) : void
+    }
+
+    IExpression <|.. MultiSpaceExpression
+    IExpression <|.. DashExpression
+    IExpression <|.. QuotesExpression
+    IExpression <|.. PunctuationSpacingExpression
+    IExpression <|.. NewlineExpression
+}
+
+TextInterpreterClient --> Context
+TextInterpreterClient --> IExpression
+
+@enduml

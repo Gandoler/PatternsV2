@@ -1,0 +1,74 @@
+@startuml
+
+
+
+abstract class AirplaneUnit {
+    +GetBaggageWeight() : double
+    +Add(unit: AirplaneUnit)
+    +Remove(unit: AirplaneUnit)
+    +RemoveExcessBaggage(excess: double)
+    +PrintLoadingMap()
+    +CheckOverweight()
+}
+
+class Airplane {
+    -units : List<AirplaneUnit>
+    -maxTotalBaggage : double
+    +Add(unit: AirplaneUnit)
+    +GetBaggageWeight() : double
+    +CheckOverweight()
+    +PrintLoadingMap()
+}
+
+class PassengerGroup {
+    -units : List<AirplaneUnit>
+    -groupName : string
+    +Add(unit: AirplaneUnit)
+    +Remove(unit: AirplaneUnit)
+    +GetBaggageWeight() : double
+    +RemoveExcessBaggage(excess: double)
+    +PrintLoadingMap()
+}
+
+class Passenger {
+    +Name : string
+    +Class : PassengerClass
+    -BaggageWeight : double
+    -BaggageRemoved : bool
+    +GetBaggageWeight() : double
+    +RemoveExcessBaggage(excess: double)
+    +PrintLoadingMap()
+
+    enum PassengerClass {
+        First
+        Business
+        Economy
+    }
+
+
+class Stewardess {
+    +GetBaggageWeight() : double
+    +RemoveExcessBaggage(excess: double)
+    +PrintLoadingMap()
+}
+
+class Pilot {
+    +GetBaggageWeight() : double
+    +RemoveExcessBaggage(excess: double)
+    +PrintLoadingMap()
+}
+
+AirplaneUnit <|-- Airplane
+AirplaneUnit <|-- PassengerGroup
+AirplaneUnit <|-- Passenger
+AirplaneUnit <|-- Stewardess
+AirplaneUnit <|-- Pilot
+client --> AirplaneUnit
+
+Airplane "1" o-- "*" AirplaneUnit
+PassengerGroup "1" o-- "*" AirplaneUnit
+
+}
+
+
+@enduml

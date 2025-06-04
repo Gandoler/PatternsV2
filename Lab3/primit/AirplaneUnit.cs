@@ -7,4 +7,5 @@ abstract class AirplaneUnit
     public virtual void Remove(AirplaneUnit unit) => throw new NotImplementedException();
     public virtual void RemoveExcessBaggage(double excess) => throw new NotImplementedException();
     public virtual void PrintLoadingMap() => throw new NotImplementedException();
+    public virtual void CheckOverweight() => throw new NotImplementedException();
 }

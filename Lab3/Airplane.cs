@@ -10,7 +10,7 @@ class Airplane : AirplaneUnit
     public override void Add(AirplaneUnit unit) => units.Add(unit);
     public override double GetBaggageWeight() => units.Sum(u => u.GetBaggageWeight());
 
-    public void CheckOverweight()
+    public override void CheckOverweight()
     {
         double total = GetBaggageWeight();
         if (total <= maxTotalBaggage)

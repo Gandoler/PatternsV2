@@ -1,0 +1,45 @@
+@startuml
+interface ISubject {
+    +Attach(observer: IObserver)
+    +Detach(observer: IObserver)
+    +Notify()
+}
+
+interface IObserver {
+    +Update(subject: ISubject)
+}
+
+class Teacher {
+    -_observers: List<IObserver>
+    +Name: string
+    +ProgressCreatedThisWeek: bool
+    +Attach(observer: IObserver)
+    +Detach(observer: IObserver)
+    +Notify()
+    +CreateProgress()
+    +CheckDeadline()
+}
+
+class Deanery {
+    -_observers: List<IObserver>
+    -_lastFaultyTeacher: Teacher
+    +Attach(observer: IObserver)
+    +Detach(observer: IObserver)
+    +Notify()
+    +Update(subject: ISubject)
+    +GetLastFaultyTeacher(): Teacher
+}
+
+class Department {
+    +Update(subject: ISubject)
+}
+
+ISubject <|.. Teacher
+ISubject <|.. Deanery
+IObserver <|.. Deanery
+IObserver <|.. Department
+
+Teacher --> Deanery : Notify (если нет успеваемости)
+Deanery --> Department : Notify (если получил от Teacher)
+
+@enduml
